@@ -1,0 +1,19 @@
+/*
+Faça uma função C que receba 2 números inteiros e retorne 0 se os números forem
+iguais, 1 se o primeiro for maior e 2 se o segundo for maior.
+2. Faça uma função C que receba como parâmetros uma string e um caracter e indique
+quantas vezes este caracter está presente na string.
+Ex. função conta_caracter(“casa”,’a’) -> 2
+3. Faça uma função em C para calcular o teorema de Pitágoras.
+4. Faça uma função C que receba como parâmetros um vetor de 10 posições de inteiros e
+um número inteiro e retorne a posição em que se encontra o número informado no
+vetor. Caso não seja encontrado, retornar -1.
+5. Escreva um procedimento que recebe as 3 notas de um aluno por parâmetro e uma
+letra. Se a letra for A o procedimento calcula a média aritmética das notas do aluno, se
+for P, a sua média ponderada (pesos: 5, 3 e 2) e se for H, a sua média harmônica.
+Apresente o tipo de média escolhida e a média final.
+medHarmonica = 3/((1/v1) + (1/v2) + (1/v3));
+*/
+public class Main
+{
+    // Função que recebe um valor como parâmetro e retorna um valor

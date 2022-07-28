@@ -1,0 +1,40 @@
+CREATE DATABASE db_portaria;
+/* 2022-06-20 09:32:18 [1 ms] */ 
+USE db_portaria;
+/* 2022-06-20 09:33:31 [48 ms] */ 
+CREATE TABLE IF NOT EXISTS `db_portaria`.`Pessoa` (
+    `nome` VARCHAR(45) NOT NULL,
+    `cpf` VARCHAR(11) NOT NULL,
+    `telefone` VARCHAR(13) NOT NULL,
+    PRIMARY KEY (`cpf`),
+    UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC) VISIBLE,
+    UNIQUE INDEX `telefone_UNIQUE` (`telefone` ASC) VISIBLE
+);
+/* 2022-06-20 09:33:39 [36 ms] */ 
+CREATE TABLE IF NOT EXISTS `db_portaria`.`Morador` (
+    `numeroMatricula` INT NOT NULL,
+    `rua` VARCHAR(45) NOT NULL,
+    `numero` CHAR(6) NOT NULL,
+    `apto` CHAR(5) NOT NULL,
+    `cidade` VARCHAR(15) NOT NULL,
+    `estado` VARCHAR(15) NOT NULL,
+    `cep` VARCHAR(8) NOT NULL,
+    `tag` INT NOT NULL,
+    `Pessoa_cpf` VARCHAR(11) NOT NULL,
+    PRIMARY KEY (`numeroMatricula`),
+    UNIQUE INDEX `numeroMatricula_UNIQUE` (`numeroMatricula` ASC) VISIBLE,
+    UNIQUE INDEX `tag_UNIQUE` (`tag` ASC) VISIBLE,
+    INDEX `fk_Morador_Pessoa1_idx` (`Pessoa_cpf` ASC) VISIBLE,
+    CONSTRAINT `fk_Morador_Pessoa1` FOREIGN KEY (`Pessoa_cpf`) REFERENCES `db_portaria`.`Pessoa` (`cpf`) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+/* 2022-06-20 09:33:43 [32 ms] */ 
+CREATE TABLE IF NOT EXISTS `db_portaria`.`Convidado` (
+    `tagConvidado` INT NOT NULL,
+    `Morador_numeroMatricula` INT NOT NULL,
+    `Pessoa_cpf` VARCHAR(11) NOT NULL,
+    UNIQUE INDEX `tagConvidado_UNIQUE` (`tagConvidado` ASC) VISIBLE,
+    INDEX `fk_Convidado_Morador_idx` (`Morador_numeroMatricula` ASC) VISIBLE,
+    INDEX `fk_Convidado_Pessoa1_idx` (`Pessoa_cpf` ASC) VISIBLE,
+    CONSTRAINT `fk_Convidado_Morador` FOREIGN KEY (`Morador_numeroMatricula`) REFERENCES `db_portaria`.`Morador` (`numeroMatricula`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+    CONSTRAINT `fk_Convidado_Pessoa1` FOREIGN KEY (`Pessoa_cpf`) REFERENCES `db_portaria`.`Pessoa` (`cpf`) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
